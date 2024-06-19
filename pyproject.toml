@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "challange"
+version = "0.1.0"
+description = ""
+authors = ["marcus-campos"]
+readme = "README.md"
+license = "UNLICENSED"
+
+[tool.ruff]
+line-length = 120
+select = ["E", "W", "F"]
+ignore = ["E501"]  # Ignore specific rules, e.g., line too long
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+alembic = "^1.13.1"
+psycopg2-binary = "^2.9.9"
+httpx = "^0.27.0"
+pydantic = {extras = ["email"], version = "^2.7.4"}
+pydantic-settings = "^2.3.2"
+asyncpg = "^0.29.0"
+uvicorn = {extras = ["standard"], version = "^0.30.1"}
+sentry-sdk = "^2.5.1"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.30"}
+python-decouple = "^3.8"
+beautifulsoup4 = "^4.12.3"
+redis = "^5.0.6"
+pytest = "^8.2.2"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.8"
+black = "^24.4.2"
+isort = "^5.13.2"
+
+[tool.poetry.group.prod.dependencies]
+gunicorn = "^22.0.0"
+python-json-logger = "^2.0.7"
+prometheus-client = "^0.20.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

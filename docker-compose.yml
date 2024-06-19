@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  app:
+    container_name: app
+    image: app
+    env_file:
+      - .env
+    ports:
+      - "8000:9000"
+    build:
+      context: .
+      dockerfile: ./infra/Dockerfile
+    command:
+      - ./infra/entrypoints/gunicorn.sh
+    depends_on:
+      - app_db
+      - app_redis
+
+  app_db:
+    container_name: app_db
+    hostname: app_db
+    image: library/postgres:16.3
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_DB=app
+    volumes:
+      - app_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    
+  app_redis:
+    container_name: app_redis
+    hostname: redis
+    image: library/redis:6.2.5
+    ports:
+      - "6379:6379"
+
+volumes:
+  app_db_data:
+    driver: "local"
