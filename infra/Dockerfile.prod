@@ -37,11 +37,11 @@ RUN --mount=type=cache,target="$POETRY_CACHE_DIR" \
   && poetry install \
     --no-interaction --no-ansi --sync --with prod
 
-COPY . .
+COPY ../ .
 
 RUN useradd -m -d /src -s /bin/bash app \
     && chown -R app:app /src/* && chown -R app:app /src \
-    && chmod +x entrypoints/* \
+    && chmod +x infra/entrypoints/* \
     && rm -rf /tmp/prometheus_multiproc_dir && mkdir -p /tmp/prometheus_multiproc_dir \
     && chown -R app:app /tmp/prometheus_multiproc_dir
 
