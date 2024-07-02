@@ -125,7 +125,8 @@ pip install poetry
    ```shell
    cp .env.example .env
    ```
-2. Install the dependencies:
+2. Edit the `.env` file and add your configuration settings, such as keys from Polygon.
+3. Install the dependencies:
    ```shell
    poetry install
    ```
@@ -174,6 +175,12 @@ just lint
 Deployment is handled using Docker and Gunicorn. The Dockerfile is optimized for a small image size and fast builds, using a non-root user. Gunicorn is configured to use the number of workers based on the available CPU cores.
 
 **Example: Running the app with Docker Compose**
+```shell
+cp .env.example .env
+```
+Edit the `.env` file and add your configuration settings, such as keys from Polygon.
+
+Ensure that Docker is installed and running on your machine. Then, run the following command:
 ```shell
 docker compose -f docker-compose.prod.yml up -d --build
 ```
